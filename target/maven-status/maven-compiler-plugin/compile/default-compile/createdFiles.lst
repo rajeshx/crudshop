@@ -1,0 +1,3 @@
+com\ecommerce\controller\TestController.class
+com\ecommerce\filters\ObjectHttpMessageConverter.class
+com\ecommerce\filters\CORSFilter.class

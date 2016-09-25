@@ -1,0 +1,39 @@
+notes..
+javamail using spring framework..
+step 1:
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="netharajesh5@gmail.com" />
+		<property name="password" value="1055257@Raj" />
+ 
+		<!-- The name of the property, following JavaBean naming conventions -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+step 2:
+1.Login to Gmail. 
+2.Access the URL as https://www.google.com/settings/security/lesssecureapps 
+3.Select "Turn on"
+
+step 3: use below code..
+SimpleMailMessage crunchifyMsg = new SimpleMailMessage();
+			crunchifyMsg.setTo(mailDto.getToMail());
+			crunchifyMsg.setSubject(mailDto.getToSubject());
+			crunchifyMsg.setText(mailDto.getSetText());
+			new Thread() {
+				public void run() {
+					mailSender.send(crunchifyMsg);
+				}
+			}.start();
+			return "Message was sent your email...!";
+		} catch (Exception e) {
+			return "Please enter valid email...!";
+		}
+		
